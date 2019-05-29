@@ -7,12 +7,11 @@
 @if (Model != null)
 {
 
-    <h2>Index</h2>
 
-    <p>
+    <img src="~/images/list.png" alt="GG" />
+    <link href="~/css/table.css" rel="stylesheet" />
 
-    </p>
-    <table class="table">
+    <table class="jumbotron d-flex align-items-center">
         <thead>
             <tr>
                 <th></th>
@@ -28,27 +27,27 @@
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    @{
-                        var imageName = item.ProductName + ".jpg";
-                    }
+                <tr>
+                    <td>
+                        @{
+                            var imageName = item.ProductName + ".jpg";
+                        }
 
-                    <img src="~/wwwroot/images/@imageName" />
+                        <img src="~/wwwroot/images/@imageName" />
 
 
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductPrice)
-                </td>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductPrice)
+                    </td>
 
-                <td>
-                    <a asp-action="Buy" asp-route-sub="@item.ProductSubCategory" asp-route-id="@item.ProductId"><img src="~/images/cart.png" alt="Add to cart" /></a>
-                </td>
-            </tr>
+                    <td>
+                        <a asp-action="Buy" asp-route-sub="@item.ProductSubCategory" asp-route-id="@item.ProductId"><img src="~/images/cart.png" alt="Add to cart" /></a>
+                    </td>
+                </tr>
             }
 
         </tbody>

@@ -4,56 +4,52 @@
     ViewData["Title"] = "Product list";
 }
 
+<img src="~/images/list.png" alt="GG" />
+<link href="~/css/table.css" rel="stylesheet" />
 
+    <table class="jumbotron d-flex align-items-center">
+        <thead>
+            <tr>
+                <th></th>
 
-<h2>Index</h2>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Price
+                </th>
 
-<p>
+                <th>
+                    Description
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @{
+                            var imageName = item.ProductName + ".jpg";
+                        }
 
-</p>
-<table class="table">
-    <thead>
-        <tr>
-         <th></th>
+                        <img src="~/wwwroot/images/@imageName" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductPrice)
+                    </td>
 
-            <th>
-               Name
-            </th>
-            <th>
-                Price
-            </th>
-           
-            <th>
-               Description
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-            @{
-                var imageName = item.ProductName + ".jpg";
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductSubCategory)
+                    </td>
+                    <td>
+                        <a asp-action="Buy" asp-route-id="@item.ProductId"><img src="~/images/cart.png" alt="Add to cart" /></a>
+                    </td>
+                </tr>
             }
-
-            <img src="~/wwwroot/images/@imageName"/>
-             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductPrice)
-            </td>
-          
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductSubCategory)
-            </td>
-            <td>
-                <a asp-action="Buy"  asp-route-id="@item.ProductId"><img src="~/images/cart.png" alt="Add to cart" /></a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>

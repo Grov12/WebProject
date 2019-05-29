@@ -68,7 +68,19 @@ namespace EcommerceProject.Controllers
                 .FirstOrDefaultAsync(m => m.Username == userId);
 
             var webCourseLab1Context = _context.Order.Where(x => x.Username == order.Username);
-            return View(await webCourseLab1Context.ToListAsync());
+            if (order != null)
+            {
+
+
+
+                return View(await webCourseLab1Context.ToListAsync());
+            }
+            else
+            {
+                return View();
+
+            }
+            
         }
 
         public async Task<IActionResult> Vieworderitems(int? id,string username)

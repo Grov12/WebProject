@@ -35,6 +35,13 @@ namespace EcommerceProject.Controllers
         }
 
         // GET: Products, MainCategory
+        [HttpPost]
+        public JsonResult GetProductName(string term)
+        {
+            
+            var names = _context.Product.Where(p => p.ProductName.Contains(term)).Select(p => p.ProductName).ToList();
+            return Json(names);
+        }
 
         public async Task<IActionResult> SearchProduct(string id)
         {
