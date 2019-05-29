@@ -1,0 +1,61 @@
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+<form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm" class="mynav_navbar-right">
+
+
+
+    @if (User.IsInRole("Admin"))
+    {
+
+        <a asp-area="" asp-controller="Products" asp-action="Index">Edit products<b>|</b></a>
+        <a asp-area="" asp-controller="Orders" asp-action="Index">View orders<b>|</b></a>
+        <a asp-area="" asp-controller="OrderItems" asp-action="Index">Order items<b>|</b></a>
+
+    }
+
+
+
+
+
+
+    <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)! <b>|</b></a>&nbsp;
+
+    <a asp-area="" asp-controller="Orders" asp-action="MyPage">My page <b>|</b></a>&nbsp;
+    <a asp-area="" asp-controller="Products" asp-action="Cartpage">Checkout <b>|</b></a>
+    &nbsp;
+    <button type="submit">Logout</button>
+
+
+
+
+
+</form>
+}
+else
+{
+    <div class="mynav_navbar">
+        <div class="mynav_navbar-right">
+
+            <a asp-area="Identity" asp-page="/Account/Register">Register</a>
+
+        </div>
+
+        <div class="mynav_navbar-right">
+
+            <a asp-area="Identity" asp-page="/Account/Login">Login</a>
+
+        </div>
+        <div class="mynav_navbar-right">
+
+            <a asp-area="" asp-controller="Products" asp-action="Cartpage">Checkout</a>
+
+        </div>
+        </div>
+        }

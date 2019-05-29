@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidenav {
+            height: 50%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 140px;
+            left: 0;
+            background-color: #2c3e50;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+.sidenav a {
+padding: 8px 8px 8px 32px;
+text-decoration: none;
+font-size: 25px;
+color: #818181;
+display: block;
+transition: 0.3s;
+ }
+        
+
+.main {
+ margin-left: 200px; /* Same as the width of the sidenav */
+ font-size: 20px; /* Increased text to enable scrolling */
+ padding: 0px 10px;
+ }
+
+.active {
+  background-color: green;
+  color: white;
+}
+
+.dropdown-container {
+ display: none;
+ background-color: #262626;
+ padding-left: 8px;
+ font-size: 5px;
+}
+
+        
+
+        /* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 15px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+.sidenav a, .dropdown-btn {
+padding: 6px 8px 6px 16px;
+text-decoration: none;
+font-size: 20px;
+color: #818181;
+display: block;
+border: none;
+background: none;
+width: 100%;
+text-align: left;
+cursor: pointer;
+outline: none;
+}
+
+.sidenav a:hover, .dropdown-btn:hover {
+color: #f1f1f1;
+}
+    </style>
+</head>
+<body>
+   
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+
+
+        <button class="dropdown-btn">
+            Mobile
+            <i class="fa fa-caret-down"></i>
+        </button>
+
+
+
+        <div class="dropdown-container">
+            <a asp-area="" asp-controller="Products" asp-action="Subcategory" asp-route-id="Ipad">Ipad</a>
+
+
+            <a asp-area="" asp-controller="Products" asp-action="Subcategory" asp-route-id="Iphone">Iphone</a>
+
+            <a asp-area="" asp-controller="Products" asp-action="Subcategory" asp-route-id="Samsung">Samsung</a>
+
+            <i></i><a asp-area="" asp-controller="Products" asp-action="Subcategory" asp-route-id="Samsung">Huawei</a></i>
+
+
+
+        </div>
+
+
+
+
+
+        <button class="dropdown-btn">
+            TV
+            <i class="fa fa-caret-down"></i>
+        </button>
+
+
+
+        <div class="dropdown-container">
+            <a asp-area="" asp-controller="Products" asp-action="Subcategory" asp-route-id="GPU">Samsung</a>
+
+
+
+        </div>
+
+
+
+
+
+        <button class="dropdown-btn">
+            Gaming
+            <i class="fa fa-caret-down"></i>
+        </button>
+
+
+
+
+
+        <div class="dropdown-container">
+            <a asp-area="" asp-controller="Products" asp-action="Subcategory" asp-route-id="GPU">GPU</a>
+
+            <a asp-area="" asp-controller="Products" asp-action="Subcategory" asp-route-id="Monitor">Monitors</a>
+
+        </div>
+
+
+        <button class="dropdown-btn">
+            CPU
+            <i class="fa fa-caret-down"></i>
+        </button>
+
+
+
+
+
+        <div class="dropdown-container">
+            <a asp-area="" asp-controller="Products" asp-action="Subcategory" asp-route-id="Intel">Intel</a>
+
+            <a asp-area="" asp-controller="Products" asp-action="Subcategory" asp-route-id="AMD">AMD</a>
+
+        </div>
+
+    </div>
+
+
+    <span style="font-size:20px;cursor:pointer;position: fixed;left:0;" onclick="openNav()">&#9776; MENU</span>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "150px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+    <script>
+        /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

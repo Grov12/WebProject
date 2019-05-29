@@ -1,0 +1,60 @@
+﻿@model IEnumerable<EcommerceProject.Models.Product>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+@if (Model != null)
+{
+
+    <h2>Index</h2>
+
+    <p>
+
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductPrice)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @{
+                        var imageName = item.ProductName + ".jpg";
+                    }
+
+                    <img src="~/wwwroot/images/@imageName" />
+
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+
+                <td>
+                    <a asp-action="Buy" asp-route-sub="@item.ProductSubCategory" asp-route-id="@item.ProductId"><img src="~/images/cart.png" alt="Add to cart" /></a>
+                </td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+}
+else
+{
+    <p>We could not find this product :/</p>
+}

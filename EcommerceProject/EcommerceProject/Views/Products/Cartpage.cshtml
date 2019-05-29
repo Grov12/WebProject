@@ -1,0 +1,74 @@
+﻿@model IEnumerable<EcommerceProject.Models.Product>
+
+
+@if (Model != null)
+{
+
+
+
+    <h2>Index</h2>
+
+    <p>
+
+    </p>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductPrice)
+                </th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @{
+                            var imageName = item.ProductName + ".jpg";
+                        }
+
+                        <img src="~/wwwroot/images/@imageName" />
+
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductPrice)
+                    </td>
+
+                    <td>
+
+                        <a asp-action="removeFromCart" asp-route-id="@item.ProductId">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <input id="button" type="submit" name="button" onclick="alertFunction();" value="Checkout" />
+
+    <script>
+    function alertFunction() {
+
+        window.location.href = '@Url.Action("CreateOrder", "Orders")'
+    };
+
+    </script>
+
+}
+else
+{
+    <p>Empty list.</p>
+        }
